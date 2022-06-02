@@ -3,16 +3,16 @@
     <thead>
       <tr>
           <th>Id</th>
-          <th>Nom</th>
+          <th>Pseudo</th>
           <th>Email</th>
       </tr>
     </thead>
     <tbody>
     <!-- Users -->
-     <tr>
-          <th>1</th>
-          <td>Anthony</td>
-          <td>anthony@gmail.com</td>
+     <tr *ngFor="let user of users; let index = index;" (click)="routeOneUser(user.id)">
+          <th>{{index+1}}</th>
+          <td>{{user.pseudo}}</td>
+          <td>{{user.email}}</td>
       </tr>
     </tbody>
   </table>
