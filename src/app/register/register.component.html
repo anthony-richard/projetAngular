@@ -2,12 +2,14 @@
     <div class="card shadow-2xl items-center w-96 mx-auto bg-base-100 ">
         <div class="card-body">
             <h1 class="card-title justify-center">Inscription</h1>
-            <input type="text" placeholder="Email" class="input input-bordered input-primary" />
-            <input type="text" placeholder="Pseudo" class="input input-bordered input-primary" />
-            <input type="text" placeholder="Mot de passe" class="input input-bordered input-primary" />
-            <input type="text" placeholder="Confirmer mot de passe" class="input input-bordered input-primary" />
+            <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+                <input type="email" placeholder="Email" class="input input-bordered input-primary"  formControlName="email" />
+                <input type="text" placeholder="Pseudo" class="input input-bordered input-primary"  formControlName="pseudo"/>
+                <input type="password" placeholder="Mot de passe" class="input input-bordered input-primary"  formControlName="password" />
+                <input type="password" placeholder="Confirmer mot de passe" class="input input-bordered input-primary"  formControlName="passwordConfirm"/>
+            </form>
             <div class="card-actions justify-center">
-            <button class="btn btn-primary">S'inscrire</button>
+            <button type="submit" class="btn btn-primary">S'inscrire</button>
             </div>
         </div>
     </div>
