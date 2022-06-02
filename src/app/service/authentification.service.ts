@@ -13,7 +13,7 @@ export class AuthentificationService {
   postLogin(email: string, password: string) {
     this.http.post<any>("https://reseau.jdedev.fr/api/user/connect",{"email":email,"password":password}).subscribe(data=>{
       this.userData=data;
-      return 'come on';
+      return 'come on user connected';
     })
   }
   getUsersData() {
