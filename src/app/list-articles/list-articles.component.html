@@ -1,25 +1,27 @@
 <!--ajout-->
 <main class="mt-20">
     <section>
+        <!--<form [formGroup]="addForm" (ngSubmit)="submitForm()" class="card bg-base-100 shadow-xl p-4"> -->
         <div class="card bg-neutral text-neutral-content items-center mx-auto w-7/12">
             <div class="card-body items-center text-center w-full">
                 <h2 class="card-title">Ajout d'un article</h2>
-                <input type="text" placeholder="Votre titre" class="input input-bordered input-primary w-full max-w-xl" />
+                <input type="text" placeholder="Votre titre" class="input input-bordered input-primary w-full max-w-xl"/>
                 <textarea class="textarea w-full max-w-xl h-24" placeholder="Votre contenu"></textarea>
                 <div class="card-actions justify-center">
                     <button class="btn btn-success">Ajout de l'article</button>
                 </div>
             </div>
         </div>
+        <!--</form> -->
     </section>
+    
 
     <!--visionnage-->
     <section class="mt-10">
         <div class="card bg-primary text-primary-content items-center w-full mx-auto w-7/12">
-            <div class="card-body w-full">
-              
-                <h2 class="card-title">Titre article</h2>
-                <p>Texte description article</p>
+            <div class="card-body w-full" >
+                <h2 class="card-title">artcle.title</h2>
+                <p>article.content</p>
                 <p class="text-info">Texte commentaire</p>
                 <textarea class="textarea w-12/12 h-24" placeholder="Votre commentaire"></textarea>
                 <div class="card-actions justify-center">

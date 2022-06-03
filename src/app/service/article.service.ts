@@ -5,7 +5,7 @@ import { AuthentificationService } from './authentification.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ArticlesServiceServices {
+export class ArticleService {
   constructor(private http: HttpClient, private auth:AuthentificationService) {
   }
 
