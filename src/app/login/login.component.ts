@@ -27,9 +27,18 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm() {
+    let that = this;
     if (this.connectForm.valid) {
-      this.authService.postLogin(this.connectForm.value.email,this.connectForm.value.password);
-      this.router.navigateByUrl('/article/liste')
+      this.authService.postLogin(this.connectForm.value.email,this.connectForm.value.password).subscribe(
+        {
+          next(ret){
+            that.authService.setUsersData(ret)
+            that.router.navigateByUrl('/article/liste')
+          }
+        }
+      );
+      
+      
     }
     else {
       alert('il y a une erreur dans le formulaire')

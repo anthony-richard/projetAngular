@@ -13,10 +13,7 @@ export class AuthentificationService {
   }
   // connexion
   postLogin(email: string, password: string) {
-    this.http.post<any>("https://reseau.jdedev.fr/api/user/connect",{"email":email,"password":password}).subscribe(data=>{
-      this.userData=data;
-      return 'utilisateur connecté !';
-    })
+    return this.http.post<any>("https://reseau.jdedev.fr/api/user/connect",{"email":email,"password":password})
   }
   // inscription
   postSign(email: string, pseudo: string, password: string) {
@@ -24,6 +21,10 @@ export class AuthentificationService {
     this.signData=data;
     return 'Eh mais vous vous êtes inscrit !';
     })
+  }
+
+  setUsersData(data: any){
+    this.userData = data;
   }
 
   getUsersData() {

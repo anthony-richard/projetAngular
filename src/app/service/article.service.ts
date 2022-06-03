@@ -12,12 +12,15 @@ export class ArticleService {
   // récuperer tous les articles
   getAllArticles():any {
     const jwt = this.auth.getJwt();
-    const headers = new HttpHeaders({
+    console.log("token :" ,jwt);
+    const headers = {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${jwt}`
-    })
+    }
     return this.http.get<any>("https://reseau.jdedev.fr/api/article",{headers:headers})
   }
+
+
 
   // ajout d'un new article
   postArticle(titre: string, contenu: string):any {

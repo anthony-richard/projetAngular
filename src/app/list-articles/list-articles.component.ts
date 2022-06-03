@@ -14,14 +14,11 @@ export class ListArticlesComponent implements OnInit {
   allArticles: [{ id: number; title: string; content: string;}] | undefined
 
   constructor(formBuilder: FormBuilder, private art:ArticleService, private auth:AuthentificationService, private router: Router) { 
-    this.getAllArticles();
     this.tokenJwt();
+    this.getAllArticles();
     
   }
   
-  ngOnInit(): void {
-  }
-
   getAllArticles(): void {
     this.art.getAllArticles().subscribe((value: any) => {
       this.allArticles = value;
@@ -32,4 +29,7 @@ export class ListArticlesComponent implements OnInit {
       this.router.navigateByUrl('/');
     }
   }
+  ngOnInit(): void {
+  }
+
 }
