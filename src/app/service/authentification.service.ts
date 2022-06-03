@@ -6,10 +6,10 @@ import { Injectable } from '@angular/core';
 })
 export class AuthentificationService {
   private userData:{ token: string,id:string, email:string};
-  private signData:{ token: string,id:string, email:string, password:string, pseudo:string};
+  private signData:{ token: string,id:string, email:string, password:string, pseudo:string, avatar : ''};
   constructor(private http: HttpClient) {
     this.userData = {token:'',id:'',email:''}
-    this.signData = { token: '',id:'', email:'', password:'', pseudo:''}
+    this.signData = { token: '',id:'', email:'', password:'', pseudo:'', avatar:''}
   }
   // connexion
   postLogin(email: string, password: string) {
@@ -17,10 +17,7 @@ export class AuthentificationService {
   }
   // inscription
   postSign(email: string, pseudo: string, password: string) {
-    this.http.post<any>("https://reseau.jdedev.fr/api/user",{"email":email,"password":password,"pseudo":pseudo}).subscribe(data=>{
-    this.signData=data;
-    return 'Eh mais vous vous êtes inscrit !';
-    })
+    return this.http.post<any>("https://reseau.jdedev.fr/api/user",{"email":email,"password":password,"pseudo":pseudo, avatar:''})
   }
 
   setUsersData(data: any){

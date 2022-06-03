@@ -10,14 +10,10 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm : FormGroup
-  constructor(formBuilder : FormBuilder, private auth:AuthentificationService, private router:Router) {
-    this.registerForm = formBuilder.group({
+  connectForm: FormGroup
+  constructor(formBuilder: FormBuilder, private auth:AuthentificationService, private router: Router) {
+    this.connectForm = formBuilder.group({
       email: new FormControl("", [
-        Validators.required,
-        Validators.minLength(3)
-      ]),
-      pseudo: new FormControl("", [
         Validators.required,
       ]),
       password: new FormControl("", [
@@ -25,21 +21,34 @@ export class RegisterComponent implements OnInit {
       ]),
       passwordConfirm: new FormControl("", [
         Validators.required,
+      ]),
+      pseudo: new FormControl("", [
+        Validators.required,
       ])
     })
   }
-   
+
   ngOnInit(): void {
   }
 
+
   submitForm() {
-    if (this.registerForm.valid) {
-      if (this.registerForm.value.password === this.registerForm.value.passwordConfirm){
-        this.auth.postSign(this.registerForm.value.email,this.registerForm.value.pseudo,this.registerForm.value.password);
-        this.router.navigateByUrl('');
+    let that = this;
+    if (this.connectForm.valid) {
+      if (this.connectForm.value.password === this.connectForm.value.passwordConfirm){
+        this.auth.postSign(this.connectForm.value.email,this.connectForm.value.pseudo,this.connectForm.value.password).subscribe(
+          {
+            next(ret){
+              that.auth.setUsersData(ret)
+              that.router.navigateByUrl('/')
+            }
+          }
+        );
       } else {
-        alert('Mots de passe non identique');
+        alert('Les mots de passes ne sont pas similaire');
       }
-    } 
+
+    }
   }
+
 }
