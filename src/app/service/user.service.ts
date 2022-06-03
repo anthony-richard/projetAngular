@@ -9,7 +9,7 @@ export class UserService {
   constructor(private http: HttpClient, private auth:AuthentificationService) {
   }
 
-  // liste users
+  // liste de tous les utilisateurs
   getAllUser():any {
     const jwt = this.auth.getJwt();
     const headers = new HttpHeaders({
@@ -19,6 +19,7 @@ export class UserService {
     return this.http.get<any>("https://reseau.jdedev.fr/api/user",{headers:headers})
   }
 
+  // récupération d'un utilisateur
   getOneUser(id:number):any {
     const jwt = this.auth.getJwt();
     const headers = new HttpHeaders({
@@ -28,6 +29,7 @@ export class UserService {
     return this.http.get<any>(`https://reseau.jdedev.fr/api/user/${id}`,{headers:headers})
   }
   
+  // modification d'un utilisateur
   updateUser(pseudo: string, email: string, password:string, id:string):any {
     const jwt = this.auth.getJwt();
     const headers = new HttpHeaders({
@@ -36,7 +38,8 @@ export class UserService {
     })
     return this.http.put<any>(`https://reseau.jdedev.fr/api/user/${id}`,{email:email,pseudo:pseudo,password:password}, {headers})
   }
-  
+
+  // suppression d'un utilisateur
   deleteUser(id:string):any {
     const jwt = this.auth.getJwt();
     const headers = new HttpHeaders({
@@ -45,6 +48,4 @@ export class UserService {
     })
     return this.http.delete<any>(`https://reseau.jdedev.fr/api/user/${id}`,{headers:headers})
   }
-
-
 }

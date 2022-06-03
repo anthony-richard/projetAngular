@@ -29,6 +29,7 @@ export class AuthentificationService {
   getUsersData() {
     return this.userData;
   }
+  // tokenJwt
   getJwt() {
     return this.userData.token;
   }
