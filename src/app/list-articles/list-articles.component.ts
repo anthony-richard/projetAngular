@@ -11,7 +11,7 @@ import { ArticleService} from '../service/article.service';
 })
 export class ListArticlesComponent implements OnInit {
 
-  allArticles: [{ id: number; title: string; content: string;}] | undefined
+allArticles: [{  titre: string; contenu: string;id: number;}] | undefined
 
   constructor(formBuilder: FormBuilder, private art:ArticleService, private auth:AuthentificationService, private router: Router) { 
     this.tokenJwt();
