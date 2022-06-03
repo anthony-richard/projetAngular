@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../service/user.service';
 import { AuthentificationService } from '../service/authentification.service';
+import { User } from '../interfaces/userInterface';
 
 @Component({
   selector: 'app-list-users',
@@ -10,8 +11,9 @@ import { AuthentificationService } from '../service/authentification.service';
 })
 export class ListUsersComponent implements OnInit {
 
-  users: [{id:string; email: string; pseudo: string}] | undefined
+  users: User[]
   constructor(private user:UserService, private auth:AuthentificationService, private router: Router) {
+    this.users = [];
     this.tokenJwt();
     this.getAllUsers()
   }
@@ -20,7 +22,7 @@ export class ListUsersComponent implements OnInit {
       this.users = value;
     })
   }
-  routeOneUser(id:string){
+  routeOneUser(id?:number){
     this.router.navigateByUrl(`/user/${id}`);
   }
 

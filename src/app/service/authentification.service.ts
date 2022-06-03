@@ -1,15 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable } from '@angular/core';
+import { User } from '../interfaces/userInterface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthentificationService {
-  private userData:{ token: string,id:string, email:string};
-  private signData:{ token: string,id:string, email:string, password:string, pseudo:string, avatar : ''};
+  private userData:User;
   constructor(private http: HttpClient) {
-    this.userData = {token:'',id:'',email:''}
-    this.signData = { token: '',id:'', email:'', password:'', pseudo:'', avatar:''}
+    this.userData = sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')as 'string') : {email:''}
   }
   // connexion
   postLogin(email: string, password: string) {
@@ -20,8 +19,9 @@ export class AuthentificationService {
     return this.http.post<any>("https://reseau.jdedev.fr/api/user",{"email":email,"password":password,"pseudo":pseudo, avatar:''})
   }
 
-  setUsersData(data: any){
+  setUsersData(data: User){
     this.userData = data;
+    sessionStorage.setItem("user",JSON.stringify(this.userData));
   }
 
   getUsersData() {
@@ -33,6 +33,9 @@ export class AuthentificationService {
   }
   // deconnexion
   logout(){
-    this.userData = {token:'',id:'',email:''};
+    this.userData = {
+      email:"",
+    };
+    sessionStorage.removeItem('user');
   }
 }

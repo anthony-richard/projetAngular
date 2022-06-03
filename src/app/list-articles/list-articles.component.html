@@ -1,19 +1,19 @@
 <!--ajout-->
 <main class="mt-20">
+    <form [formGroup]="connectForm" (ngSubmit)="submitForm()">
     <section>
-        <!--<form [formGroup]="addForm" (ngSubmit)="submitForm()" class="card bg-base-100 shadow-xl p-4"> -->
         <div class="card bg-neutral text-neutral-content items-center mx-auto w-7/12">
-            <div class="card-body items-center text-center w-full">
-                <h2 class="card-title">Ajout d'un article</h2>
-                <input type="text" placeholder="Votre titre" class="input input-bordered input-primary w-full max-w-xl"/>
-                <textarea class="textarea w-full max-w-xl h-24" placeholder="Votre contenu"></textarea>
+            <div class="card-body items-center text-center w-full text-black ">
+                <h2 class="card-title text-white">Ajout d'un article</h2>
+                <input formControlName="titre" type="text" placeholder="Votre titre" class="input input-bordered input-primary w-full max-w-xl"/>
+                <textarea formControlName="contenu" class="textarea w-full max-w-xl h-24" placeholder="Votre contenu"></textarea>
                 <div class="card-actions justify-center">
                     <button class="btn btn-success">Ajout de l'article</button>
                 </div>
             </div>
         </div>
-        <!--</form> -->
     </section>
+    </form>
     
 
     <!--visionnage-->
@@ -27,7 +27,9 @@
                 <div class="card-actions justify-center">
                     <button class="btn btn-success w-49">Ajout d'un commentaire</button>
                         <button class="btn btn-info w-48">Modification article</button>
-                        <button class="btn btn-error w-48">Suppression article</button>
+                        <div *ngIf="getMyId()===article.id">
+                            <button class="btn btn-error w-48" (click)="deleteArt(article.id_article)">Suppression article</button>
+                        </div>
                 </div>
             </div>
         </div>

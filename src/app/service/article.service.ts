@@ -10,55 +10,55 @@ export class ArticleService {
   }
 
   // récuperer tous les articles
-  getAllArticles():any {
+  getAllArticles(){
     const jwt = this.auth.getJwt();
     console.log("token :" ,jwt);
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${jwt}`
     }
-    return this.http.get<any>("https://reseau.jdedev.fr/api/article",{headers:headers})
+    return this.http.get("https://reseau.jdedev.fr/api/article",{headers:headers})
   }
 
 
 
   // ajout d'un new article
-  postArticle(titre: string, contenu: string):any {
+  postArticle(titre: string, contenu: string){
     const jwt = this.auth.getJwt();
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${jwt}`
     })
-    return this.http.post<any>("https://reseau.jdedev.fr/api/article",{titre:titre,contenu:contenu}, {headers})
+    return this.http.post("https://reseau.jdedev.fr/api/article",{titre:titre,contenu:contenu}, {headers})
   }
 
   // modification article
-  updatingArticle(titre: string, contenu: string, id:number):any {
+  updatingArticle(titre: string, contenu: string, id:number){
     const jwt = this.auth.getJwt();
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${jwt}`
     })
-    return this.http.put<any>(`https://reseau.jdedev.fr/api/article/${id}`,{titre:titre,contenu:contenu}, {headers})
+    return this.http.put(`https://reseau.jdedev.fr/api/article/${id}`,{titre:titre,contenu:contenu}, {headers})
   }
 
   // suppression article
-  deleteArticle(id:number):any {
+  deleteArticle(id:number){
     const jwt = this.auth.getJwt();
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${jwt}`
     })
-    return this.http.delete<any>(`https://reseau.jdedev.fr/api/article/${id}`,{headers:headers})
+    return this.http.delete(`https://reseau.jdedev.fr/api/article/${id}`,{headers:headers})
   }
 
   // 5 derniers articles d'un utilisateur
-  getLastArticlesUser(id:string):any {
+  getLastArticlesUser(id:string){
     const jwt = this.auth.getJwt();
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${jwt}`
     })
-    return this.http.get<any>(`https://reseau.jdedev.fr/api/user/${id}/article`,{headers:headers})
+    return this.http.get(`https://reseau.jdedev.fr/api/user/${id}/article`,{headers:headers})
   }
 }

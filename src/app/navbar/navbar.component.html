@@ -4,15 +4,15 @@
     </div>
     <div class="navbar-end hidden sm:flex">
         <ul class="menu menu-horizontal p-0 text-base-100">
-            <div *ngIf="jwt">
+            <div *ngIf="jwt()">
                   <li><a routerLink="/user/liste">Utilisateurs</a></li>
                   <li><a routerLink="article/liste">Articles</a></li>
             </div>
-            <div *ngIf="!jwt">
+            <div *ngIf="!jwt()">
                 <li><a routerLink="">Connexion</a></li>
                 <li><a routerLink="register">Inscription</a></li>
             </div>
-            <div *ngIf="jwt">
+            <div *ngIf="jwt()">
                 <button (click)="logout()" class="btn btn-error">Deconnexion</button>
             </div>
         </ul>

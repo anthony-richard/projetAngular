@@ -10,8 +10,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(private router: Router, private auth : AuthentificationService) { }
   
-  get jwt(): string {
-    return this.auth.getJwt();
+  jwt(): string {
+    return this.auth.getJwt() as string;
   }
 
   logout():void{
